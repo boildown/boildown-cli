@@ -1,33 +1,25 @@
 {
-  "name": "gentry-cli",
-  "description": "cli for gentry",
+  "name": "boildown-cli",
+  "description": "command line utility for boildown",
   "version": "0.0.6",
-  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
   "bin": {
     "gen": "bin/cli.js"
   },
   "dependencies": {
-    "inquirer": "^0.10.1",
+    "inquirer": "^0.11.0",
     "lodash": "^3.10.1",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "mocha": "^2.3.3",
-    "should": "^7.1.1",
-    "standard": "^5.3.1"
+    "standard": "^5.4.1"
   },
   "engines": {
     "node": ">= 4"
   },
-  "homepage": "http://github.com/gentryjs/gentry-cli",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/gentryjs/gentry-cli/raw/master/LICENSE"
-    }
-  ],
+  "homepage": "http://github.com/boildown/boildown-cli",
+  "license": "MIT",
   "preferGlobal": "true",
-  "repository": "git://github.com/gentryjs/gentry-cli.git",
+  "repository": "git://github.com/boildown/boildown-cli.git",
   "scripts": {
     "test": "standard"
   }
