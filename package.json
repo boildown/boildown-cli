@@ -3,7 +3,7 @@
   "description": "command line utility for boildown",
   "version": "0.0.6",
   "bin": {
-    "gen": "bin/cli.js"
+    "boil": "bin/cli.js"
   },
   "dependencies": {
     "inquirer": "^0.11.0",
