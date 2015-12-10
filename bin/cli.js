@@ -17,6 +17,7 @@ const packageQuestions = require('../lib/packageQuestions')
 if (!argv._.length) usage()
 doesGeneratorExist()
 
+const generatorPath = path.dirname(require.resolve('boildown-' + generatorName))
 const generator = require('boildown-' + generatorName)
 const questions = generator.questions
 const actions = generator.actions
@@ -33,30 +34,31 @@ if (argv._.length !== 1) {
   process.exit(0)
 }
 
+function runActions (answers) {
+  actions(answers, (err) => {
+    if (err) console.error(err)
+    process.exit(err ? 1 : 0)
+  })
+}
+
 inquirer.prompt(packageQuestions.concat(questions), (answers) => {
   // only run the actions
-  if (argv.actions) return runActions()
+  if (argv.actions) return runActions(answers)
 
   // full scaffold
   const dest = `${process.cwd()}/${answers.packageName}`
   console.log(`auto scaffold -\n${dest}`)
   boildown.autoScaffold({
     answers,
-    templateDir: generator.scaffold.templateDir,
+    templateDir: path.resolve(generatorPath, generator.scaffold),
+    package: generator.package,
     dest
   }, (err) => {
     if (err) throw err
     const file = path.join(dest, 'boildown.json')
     fs.writeFileSync(file, JSON.stringify(answers, null, 2))
-    runActions()
+    runActions(answers)
   })
-
-  function runActions () {
-    boildown.runActions({answers, actions}, (err) => {
-      if (err) console.error(err)
-      process.exit(err ? 1 : 0)
-    })
-  }
 })
 
 function usage () {
