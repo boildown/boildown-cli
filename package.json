@@ -1,7 +1,7 @@
 {
   "name": "boildown-cli",
   "description": "command line utility for boildown",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "bin": {
     "boil": "bin/cli.js"
   },
